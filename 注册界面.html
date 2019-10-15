@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/
+TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+</head>
+<body>
+<script>
+function checkName()
+{
+	var name = document.getElementById("username");
+	var result = document.getElementById("nameInfo");
+	var flag = name.checkValidity();
+	if(flag)
+	{
+		result.innerHTML = "用户名格式正确";
+	}
+	else
+	{
+		result.innerHTML = "用户名格式不正确";
+	}
+}
+function checkphonenum()
+{
+	var name = document.getElementById("phonenum");
+	var phonenumInfo = document.getElementById("phonenumInfo");
+	var flag = name.checkValidity();
+	if(flag)
+	{
+		phonenumInfo.innerHTML = "电话号码输入格式正确";
+	}
+	else
+	{
+		phonenumInfo.innerHTML = "抱歉，电话号码格式错误";
+	}
+	
+}
+
+//验证密码强度
+function checkStrength()
+{
+	var strength = document.getElementById("strength");
+	var psw1 = document.getElementById("psw1").value;
+	var length = psw1.length;
+	if (length>=1&&length<3)
+	{
+		strength.innerHTML="弱";
+	}
+	else if(length>=3&&length<6)
+	{
+		strength.innerHTML="中";
+	}
+	else
+	{
+		strength.innerHTML="强";
+	}
+}
+//验证两次输入密码是否一致
+function checkPSW()
+{
+	var psw1 = document.getElementById("psw1").value;
+	var psw2 = document.getElementById("psw2").value;
+	var pswInfo = document.getElementById("pswInfo");
+	if(psw1!=psw2)
+	{
+		pswInfo.innerHTML='两次输入的密码必须一致';
+	}
+}
+//注册方法
+function reg()
+{
+	var username = document.getElementById("username").value;
+	var email = document.getElementById("email").value;
+	var phonenum = document.getElementById("phonenum").value;
+	var gender = document.getElementById("gender").value;
+	if(document.getElementById("username").checkValidity()//判断用户名是否通过校验
+	  &&document.getElementById("psw1").checkValidity()//判断密码是否通过校验
+	  &&document.getElementById("psw2").checkValidity()//判断重复密码是否通过校验
+	  &&document.getElementById("email").checkValidity()//判断电子邮箱是否通过校验
+	  &&document.getElementById("phonenum").checkValidity()//判断手机号码是否通过校验
+	)
+	{
+		alert(
+			'确认注册信息\n'+
+			'用户名：'+username+'\n'+
+			'电子邮箱：'+email+'\n'+
+			'手机号码：'+phonenum+'\n'+
+			'旅客类型：'+gender+'\n'
+		)	
+	}
+}
+</script>
+<form>
+<fieldset>
+<legend>用户注册账户信息</legend>
+<center>
+<div style="padding:5px;width=600px">
+	<h4>用户信息</h4>
+	<table width='100%'>
+		<tr>
+			<td width='20%'>用户名</td>
+			<td width='40%'><input id="username" type="text" onblur="checkName()" required="true" pattern="^[a-zA-Z]\w{4,9}$" placeholder="请输入5-10位数字或字母"/></td>
+			<td width='40%'><font color="red">*</font><span id="nameInfo"></span></td>
+		</tr>
+		<tr>
+			<td>邮箱</td>
+			<td><input id="email" type="email" required="true"/></td>
+			<td><font color="red">*</font></td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td><input   id="psw1"   type="password"   required="true" onkeyup=
+"checkStrength()"/></td>
+			<td><font color="red">*</font> <span id="strength"></span></td>
+		</tr>
+		<tr>
+			<td>确认密码</td>
+			<td><input   id="psw2"   type="password"   required="true" onblur="checkPSW()"/></td>
+			<td><font color="red">*</font> <span id="pswInfo"></span></td>
+		</tr>
+		<tr>
+			<td>手机号码</td>
+			<td><input id="phonenum" type="text" pattern="^1[3456789]\d{9}$" required="required" onblur="checkphonenum()" placeholder="请输入11位数字"/></td>
+			<td><font color="red">*</font> <span id="phonenumInfo"></span></td> 
+		</tr>
+		<tr>
+			<td width='20%'>旅客类型</td>
+			<td width='40%'>
+				<select id="gender">
+					<option value="成人">成人</option>
+					<option value="学生">学生</option>
+					<option value="儿童">儿童</option>
+				</select>
+			</td>
+			<td width='20%'>&nbsp;</td>
+		</tr>
+	</table>
+</div>
+<input type="submit" value="注册新用户" onclick="reg()">
+<input type="reset" value="重置">
+</center>
+</fieldset>
+</form>
+</body>
+</html>

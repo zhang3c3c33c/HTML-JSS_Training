@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<meta charset=gb2312" />
+	<title>获取媒体信息</title>
+	<script>
+		function checkload()
+	{ 
+		var myVideo=document.getElementById("myVideo");
+		var state=myVideo.readyState;
+		var VideoInfo=document.getElementById("VideoInfo");
+		if(state=="0")
+		{
+			VideoInfo.innerHTML = "无可播放媒体";
+		}
+		else if(state=="1")
+		{
+			VideoInfo.innerHTML = "无法播放媒体信息";
+		}
+		else if(state=="2")
+		{
+			VideoInfo.innerHTML = "无法获取后续媒体信息";
+		}
+		else if(state=="3")
+		{
+			VideoInfo.innerHTML = "以获取后续媒体信息，正常播放";
+		}
+		else
+		{
+			VideoInfo.innerHTML = "已充分获取媒体信息资源";
+		}
+	} 
+</script>
+	<div>
+		<video id="myVideo" poster="F:\HTML_JSS\第04章__HTML5的多媒体\video\poster.png" onPlay="checkload()" controls>
+			<source src="F:\HTML_JSS\第04章__HTML5的多媒体\video\4_1.mp4" type="video/mp4">
+			您的浏览器不支持 HTML5 video 标签。
+		</video>
+	</div>
+	<span id="VideoInfo">result</span>
+	<br />
+	<br />
+	<br />
+	<div>
+		<audio controls>
+			<source src="F:\HTML_JSS\第04章__HTML5的多媒体\audio\4_2.mp3" type="audio/mpeg">
+			您的浏览器不支持 audio 元素。
+		</audio>
+	</div>
+</html>

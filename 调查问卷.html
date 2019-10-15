@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/
+TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>调查问卷</title>
+	</head>
+	<body>
+		<script>
+			function getValue()
+{
+	
+	var value = "电子邮箱："+document.getElementById("inputEmail").value;
+	var value = value+"；生日："+document.getElementById("data").value;
+	var value = value+"；当前年龄："+document.getElementById("txtAge").value;
+	var value = value+"；分数："+document.getElementById("rangeInput").value;
+	var result = document.getElementById("result");
+	result.innerText = value;
+}
+</script>
+		<form>
+			<fieldset>
+				<legend>
+					请填写您的信息
+				</legend>
+				<legend>
+					您的电子邮箱为：
+					<input type="email" id="inputEmail">
+				</legend>
+				<legend>
+					您的生日为：
+					<input type="date" id="data">
+				</legend>
+				<legend>
+					您当前年龄为：
+					<input type="text" id="txtAge" pattern="^[1-9]?[0-9]$" placeholder="your age">
+				</legend>
+				<legend>
+					希望本次分数：
+					<input id="rangeInput" type="range" min="0" max="100" onChange="getValue()">
+				</legend>
+				<legend>
+					<span id="result"></span>
+				</legend>
+			</fieldset>
+		</form>
+	</body>
+</html>
